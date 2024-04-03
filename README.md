@@ -22,6 +22,7 @@ This project automates the extraction of news content from designated websites a
 1. Clone the repository: `git clone <repository_url>`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Run the application: `python app.py`
+4. Apply the command: `flask run`
 
 ## Usage
 
