@@ -1,5 +1,3 @@
-Certainly! Let's simplify and polish the README for a professional presentation:
-
 ---
 
 # News Template Engineering
@@ -42,6 +40,6 @@ Premier Pick:
 ## Sample Templates
 - ![sample1](/UI_Captures/Sample_Downloaded_Templates/NewsTech1.jpg) ![sample2](/UI_Captures/Sample_Downloaded_Templates/NewsTech2.jpg)
 - ![sample3](/UI_Captures/Sample_Downloaded_Templates/NewsTech3.jpg)
+  
 ## Contributing
-
 Contributions are welcome! Submit pull requests or open issues for improvements.
