@@ -7,8 +7,6 @@ Certainly! Let's simplify and polish the README for a professional presentation:
 ## Overview
 
 This project automates the extraction of news content from designated websites and presents it in a visually appealing HTML template. Leveraging web scraping techniques and Python's Flask framework, it provides real-time news aggregation with customizable templates.
-- ![Flowchart](/UICaptures/Flowchart.png)
-*Flowchart*
 
 ## Features
 
@@ -31,6 +29,18 @@ This project automates the extraction of news content from designated websites a
 2. Choose the news source and template.
 3. Download the template or save news data as Excel.
 
+## UI Captures
+Flowchart: 
+- ![Flowchart](/UI_Captures/Flowchart.jpg)
+Premier Pick:
+- ![PreimerPick](/UI_Captures/PremierPick.png)
+
+## Result Capture
+- ![NewsTemplate](/UI_Captures/NewsTemplate.png)
+  
+## Sample Templates
+- ![sample1](/UI_Captures/Sample_Downloaded_Templates/NewsTech1.jpg) ![sample2](/UI_Captures/Sample_Downloaded_Templates/NewsTech2.jpg)
+- ![sample3](/UI_Captures/Sample_Downloaded_Templates/NewsTech3.jpg)
 ## Contributing
 
 Contributions are welcome! Submit pull requests or open issues for improvements.
