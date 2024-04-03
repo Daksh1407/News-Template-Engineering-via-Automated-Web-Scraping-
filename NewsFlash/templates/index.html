@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" style="background-image: url('../static/image/news_bgd.jpg'); background-attachment: fixed;">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewsFlash Stake</title>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Updated style for the time display */
+        
+        #timeDisplay {
+            width: 550px;
+            text-align: center;
+            position: absolute;
+            bottom: 30px;
+            /* Adjust as needed */
+            left: 50%;
+            transform: translateX(-50%);
+            color: red;
+            /* Updated text color to red */
+            font-weight: bold;
+            /* Set text to bold */
+            font-size: 18px;
+            /* Adjust font size as needed */
+        }
+        /* Updated style for the "Listen to News" button */
+        
+        #listenButton {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            background-color: #3490dc;
+            color: #ffffff;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="mb-10 top-1 w-screen flex flex-col justify-center items-center">
+        <img src="../static/image/logo.png" class="w-400 h-150" alt="Logo Image">
+    </div>
+    <div class="bottom-6 m-auto relative" id="container" style="width:614px; height:700px;">
+        <img src="" id="bg1" width="614px" height="700px" alt="Background image 1">
+        <span class=" font-mono text-lg absolute text-white whitespace-pre-line text-justify" id="News" style="width: 550px; top: 100px; left: 30px; line-height: 2em;">
+            {{News|safe}}
+        </span>
+        <div id="timeDisplay" class="absolute bottom-4 text-white"></div>
+        <!-- Element for time display -->
+    </div>
+    <div id="canvasWrapper" class="mb-10 w-screen flex justify-center items-center">
+        <button class="text-white p-3 rounded-md font-sans text-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500" onclick="download()">Download Post</button>
+        <button class="ml-4 text-white p-3 rounded-md font-sans text-xl bg-gradient-to-r from-green-400 to-blue-500 hover:from-pink-500 hover:to-yellow-500" onclick="audio()">Audio</button>
+    </div>
+
+
+    <script>
+        function audio() {
+            // Get the news text from the 'News' span
+            const newsText = document.getElementById('News').innerText;
+
+            // Use the Web Speech API to convert text to speech
+            const synth = window.speechSynthesis;
+            const utterance = new SpeechSynthesisUtterance(newsText);
+
+            // Set the voice (optional)
+            const voices = synth.getVoices();
+            utterance.voice = voices[0]; // You can choose a specific voice from the 'voices' array
+
+            // Speak the news
+            synth.speak(utterance);
+        }
+
+        var newbg = document.getElementById("bg1");
+        var background = new Image();
+        background.src = "static/image/" + (Math.floor(Math.random() * (6)) + 1) + ".jpg";
+        newbg.src = background.src;
+
+        function updateTime() {
+            const timeElement = document.getElementById('timeDisplay');
+            const now = new Date();
+            const options = {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZoneName: 'short'
+            };
+            const dateTimeString = now.toLocaleDateString('en-US', options);
+            timeElement.textContent = dateTimeString;
+        }
+
+        updateTime(); // Call updateTime function to initially display time
+
+        setInterval(updateTime, 1000); // Update time every second (1000 milliseconds)
+
+        function startAudio() {
+            // Get the news text from the 'News' span
+            const newsText = document.getElementById('News').innerText;
+
+            // Use the Web Speech API to convert text to speech
+            const synth = window.speechSynthesis;
+
+            // Ensure voices are loaded
+            synth.onvoiceschanged = function() {
+                // Introduce the news
+                const introUtterance = new SpeechSynthesisUtterance("Hey! Today's headlines are");
+                introUtterance.onend = function() {
+                    // Read the news after the introduction
+                    const newsUtterance = new SpeechSynthesisUtterance(newsText);
+                    newsUtterance.onend = function() {
+                        // Conclude with a thank-you message after reading the news
+                        const thankYouUtterance = new SpeechSynthesisUtterance("Thank you!");
+                        synth.speak(thankYouUtterance);
+                    };
+                    synth.speak(newsUtterance);
+                };
+                synth.speak(introUtterance);
+            };
+        }
+
+        function audio() {
+            startAudio();
+        }
+    </script>
+
+    <script src="/static/js/html2canva.js"></script>
+    <script>
+        function download() {
+            html2canvas(document.getElementById("container"), {
+                height: 700,
+                width: 614
+            }).then(canvas => {
+                var a = document.createElement('a');
+                a.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+                a.download = 'NewsTech.jpg';
+                a.click();
+            });
+        }
+    </script>
+</body>
+
+</html>
