@@ -1,0 +1,8 @@
+body {
+    background-image: url('/static/image/bg3.jpg');
+    /* Specify the correct path to your image */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    /* Additional CSS styles for better appearance if needed */
+}

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choice Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/static/image/background.jpg');
+            background-size: cover;
+            background-position: center;
+            overflow: hidden; /* Prevent scrolling */
+            height: 100vh; /* Set the body height to the height of the viewport */
+        }
+        
+        .choices {
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center items vertically */
+            flex-direction: row; /* Align items in a column */
+            margin: 1rem 8rem;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        h1 {
+            background-color: #081b31;
+            color: #fff;
+            height: 7rem;
+            line-height: 7rem;
+            font-weight: bold;
+            font-size: 3rem;
+            /* Increase the size of the text */
+            font-family: 'Raleway', sans-serif;
+            /* Specify a custom font family */
+        }
+        
+        .choice {
+            margin: 60px;
+            position: relative;
+        }
+        
+        .choice button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            transition: transform 0.3s; /* Adding a transition for a smooth effect */
+            position: relative; /* Positioning context for pseudo-element */
+        }
+        
+        .choice button:hover {
+            transform: scale(1.4); /* Scale up the button on hover */
+        }
+        
+        .choice img {
+            height: 300px;
+            width: 300px;
+            object-fit: cover;
+            border-radius: 50%;
+            position: relative;
+        }
+        
+        .choice .image-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: red; /* Change text color to red */
+            font-size: 2rem;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+            background-color: white; /* Set background color to white */
+            padding: 10px; /* Add padding for the circle */
+            display: inline-block; /* Make it inline-block to have a circle */
+            border-radius: 50%; /* Make it a perfect circle */
+        }
+        
+        .choice:hover img {
+            opacity: 0.5; /* Reduce opacity of image on hover */
+        }
+        
+        .choice:hover .image-text {
+            opacity: 1; /* Show text on hover */
+        }
+        
+        .choice button:hover::before {
+            content: ""; /* Empty content for pseudo-element */
+            position: absolute;
+            top: -7px;
+            left: -7px;
+            right: -7px;
+            bottom: -7px;
+            border: 12px solid white; /* White outline */
+            border-radius: 50%; /* To make it circular */
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Premier Picks of the Day</h1>
+    <div class="choices">
+        <div class="choice" id="tech" onclick="redirectToNews('tech')" data-text="Tech">
+            <button>
+                <img src="/static/image/tech.jpg" alt="Tech News">
+                <span class="image-text">Tech</span>
+            </button>
+        </div>
+        <div class="choice" id="stock" onclick="redirectToNews('stock')" data-text="Stock">
+            <button>
+                <img src="/static/image/stock.jpg" alt="Stock News">
+                <span class="image-text">Stock</span>
+            </button>
+        </div>
+        <div class="choice" id="corporate" onclick="redirectToNews('corporate')" data-text="Business">
+            <button>
+                <img src="/static/image/Corporate.jpg" alt="Corporate News">
+                <span class="image-text">Business</span>
+            </button>
+        </div>
+    </div>
+    <div class="choices">
+        <div class="choice" id="market" onclick="redirectToNews('market')" data-text="Market">
+            <button>
+                <img src="/static/image/Market.jpg" alt="Market News">
+                <span class="image-text">Market</span>
+            </button>
+        </div>
+        <div class="choice" id="politics" onclick="redirectToNews('politics')" data-text="Politics">
+            <button>
+                <img src="/static/image/politics.jpg" alt="Politics News">
+                <span class="image-text">Politics</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        function redirectToNews(category) {
+            window.location.href = `/news_page?category=${category}`; // Redirects to the news page with the selected category
+        }
+    </script>
+</body>
+</html>
